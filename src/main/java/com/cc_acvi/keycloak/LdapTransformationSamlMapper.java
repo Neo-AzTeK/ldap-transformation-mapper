@@ -1,7 +1,5 @@
 package com.cc_acvi.keycloak;
 
-import com.cc_acvi.keycloak.util.LdapTransformationMapperConfig;
-
 import org.keycloak.models.AuthenticatedClientSessionModel;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.ProtocolMapperModel;
