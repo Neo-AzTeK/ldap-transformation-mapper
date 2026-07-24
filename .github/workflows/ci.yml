@@ -1,14 +1,32 @@
-name: CI
+name: CI & Keycloak Compatibility Matrix
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  schedule:
+    # Run weekly on Monday at 04:00 UTC to catch breaking changes in Keycloak releases
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+    inputs:
+      keycloak_version:
+        description: 'Custom Keycloak version to test against'
+        required: false
+        default: '26.6.0'
 
 jobs:
-  build-and-test:
+  matrix-build:
+    name: Build & Test (Keycloak ${{ matrix.keycloak-version }})
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        keycloak-version:
+          - '26.0.0'
+          - '26.1.0'
+          - '26.6.0'
 
     steps:
       - name: Checkout code
@@ -21,12 +39,13 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build and run unit tests with Maven
-        run: mvn clean verify -B
+      - name: Build and run unit tests against Keycloak ${{ matrix.keycloak-version }}
+        run: mvn clean verify -Dkeycloak.version=${{ matrix.keycloak-version }} -B
 
       - name: Upload JaCoCo Coverage Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: jacoco-coverage-report
+          name: jacoco-coverage-report-keycloak-${{ matrix.keycloak-version }}
           path: target/site/jacoco/
+
