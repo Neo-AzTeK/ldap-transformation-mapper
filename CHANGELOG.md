@@ -19,3 +19,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Standardized package architecture: aligned `LdapTransformationMapperConfig` package declaration with file directory path (`com.cc_acvi.keycloak`).
 - Enforced `Locale.ROOT` in `LdapIdConverter` for locale-invariant `UPPERCASE` and `LOWERCASE` transformations.
 - Improved error resilience in `LdapTransformationMapperConfig` to gracefully fallback to `UPPERCASE` when an invalid transformation mode string is configured.
+- Upgraded dependencies including Keycloak (to 26.7.0), JUnit Jupiter (to 6.1.2), JaCoCo maven plugin (to 0.8.15), and GitHub Actions (checkout v7, setup-java v5, upload-artifact v7, softprops/action-gh-release v3).

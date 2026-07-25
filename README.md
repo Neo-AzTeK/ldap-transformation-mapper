@@ -21,7 +21,7 @@ Built for **Keycloak 26.6.0+**.
 ```bash
 mvn clean package
 ```
-The compiled JAR is output to `target/ldap-transformation-mapper-1.0.0.jar`.
+The compiled JAR is output to `target/ldap-transformation-mapper-1.0.1.jar`.
 
 ### Run Unit Tests & Coverage Report
 ```bash
@@ -31,7 +31,7 @@ Test reports and JaCoCo code coverage results are generated at `target/site/jaco
 
 ## Deployment
 
-1. Copy `target/ldap-transformation-mapper-1.0.0.jar` into your Keycloak installation `providers/` directory (or volume mount for containerized Keycloak).
+1. Copy `target/ldap-transformation-mapper-1.0.1.jar` into your Keycloak installation `providers/` directory (or volume mount for containerized Keycloak).
 2. Restart Keycloak.
 3. In Keycloak Admin Console:
    - For **OIDC**: Go to **Client Scope** or **Client** → **Mappers** → **Add mapper** → **By Configuration** → Select **LDAP ID Transformation Mapper**.
